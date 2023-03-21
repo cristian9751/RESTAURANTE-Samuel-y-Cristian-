@@ -27,3 +27,6 @@ hs_err_pid*
 
 #No se clona ni se sube la carpeta llamada Doc a los repositorios de git, asi como, todos los archivos que contiene.
 Doc/
+
+#No se permite clonar ni subir archivos con formato md
+*.md
