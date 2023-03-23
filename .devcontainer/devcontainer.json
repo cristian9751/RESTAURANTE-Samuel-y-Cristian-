@@ -7,14 +7,10 @@
 
 	"features": {
 		"ghcr.io/devcontainers/features/java:1": {
-			"version": "none",
+			"version": "17",
+			"jdkDisto": "11",
 			"installMaven": "true",
 			"installGradle": "true"
-		},
-		"ghcr.io/devcontainers-contrib/features/ant-sdkman:2": {
-			"version": "latest",
-			"jdkVersion": "11",
-			"jdkDistro": "ms"
 		}
 	}
 
