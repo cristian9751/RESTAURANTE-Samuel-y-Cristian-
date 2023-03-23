@@ -3,10 +3,10 @@
   "image": "mcr.microsoft.com/devcontainers/universal:2",
   "features": {
     "ghcr.io/devcontainers/features/java:1": {
-      "version": "11.0.18",
+      "version": "11.0.18 ",
       "installGradle": "true",
-      "installMaven" : "true",
-      "installAnt" : "true"
-    }
+      "installMaven" : "true"
+    },
+    "ghcr.io/devcontainers-contrib/features/ant-sdkman:2": {}  
   }
 }
