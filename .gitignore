@@ -30,3 +30,6 @@ Doc/
 
 #No se permite clonar ni subir archivos con formato md
 *.md
+
+#Excluye dotfiles
+.*
