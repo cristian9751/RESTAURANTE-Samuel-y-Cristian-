@@ -1,5 +1,5 @@
 public class prueba {
     public static void main(String[] args) {
-        System.out.println("Samu mama verga");
+        System.out.println("Cristian atontao");
     }
 }
