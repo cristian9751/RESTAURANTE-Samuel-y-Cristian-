@@ -33,3 +33,4 @@ Doc/
 
 #Excluye dotfiles
 .*
+.*/
