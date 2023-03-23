@@ -25,13 +25,11 @@ hs_err_pid*
 #No permite que se suban archivos pdf desde repositorios locales de git
 *.pdf
 
-Se ignora el directorio doc
-/Doc/
-
 #No se permite clonar ni subir archivos con formato md
 *.md
 
-#Se ignoran todos los dotfiles
-/.*/
-.*
+#Se ignora devcontainer
+/.devcontainer/
 
+#Se ignora directorio doc
+/Doc/
