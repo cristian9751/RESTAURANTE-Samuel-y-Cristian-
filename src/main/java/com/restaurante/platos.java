@@ -5,5 +5,5 @@ package com.restaurante;
  * @project RESTAURANTE-Samuel-y-Cristian- - com.restaurante
  * @created 24/3/23
  */
-pubic cass platos {
+public class platos {
 }
