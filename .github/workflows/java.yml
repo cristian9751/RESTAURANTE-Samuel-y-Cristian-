@@ -12,7 +12,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: '11'
-          distribution: 'Microsoft'
+          distribution: 'microsoft'
       - name: SetUp Maven
         uses: s4u/setup-maven-action@v1.7.0
       - name: Build with Maven
