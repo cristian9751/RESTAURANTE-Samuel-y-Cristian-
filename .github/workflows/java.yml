@@ -1,6 +1,8 @@
 name: Java CI
 
-on: [pull_request]
+on:
+  pull_request:
+    branches: 'main'
 
 jobs:
   build:
@@ -12,6 +14,6 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: '11'
-          distribution: 'ms'
+          distribution: 'open'
       - name: Build with Maven
         run: mvn --batch-mode --update-snapshots package
