@@ -18,6 +18,5 @@ jobs:
           distribution: 'microsoft'
       - name: Build with Maven
         env:
-          # ruleid: allowed-unsecure-commands
           ACTIONS_ALLOW_UNSECURE_COMMANDS: true
         run: mvn --batch-mode --update-snapshots package
