@@ -37,20 +37,35 @@ public class ingrediente {
     }
 
     public void setCantidad(int cantidad) {
-        if(cantidad >= 0) {
+        if(comprobar_cantidad(cantidad, false)) {
             this.cantidad = cantidad;
         } else {
-            System.out.println("Los ingredientes deben de tener una cantidad mayor a 0");
+            System.out.println("La canttidad del ingrediente " + this.nombre
+            + " no puede ser " + cantidad);
         }
     }
 
     public void AumentarCantidad(int cantidad) {
-        this.setCantidad(this.cantidad + cantidad);
+        if(comprobar_cantidad(cantidad, true)) {
+            this.setCantidad(this.cantidad + cantidad);
+        }
     }
 
 
     public void ReducirCantidad(int cantidad) {
-        this.setCantidad(this.cantidad - cantidad);
+        if(comprobar_cantidad(cantidad, true)) {
+            this.setCantidad(this.cantidad - cantidad);
+        }
     }
 
+    private boolean comprobar_cantidad(int cant, boolean txt) {
+        if(cant > 0) {
+            return true
+        } else {
+            if(txt) {
+                System.out.println("Debes indicar un valor mayor o igual a 0");
+            }
+            return false;
+        }
+    }
 }
