@@ -5,5 +5,5 @@ package com.restaurante;
  * @project RESTAURANTE-Samuel-y-Cristian- - com.restaurante
  * @created 25/3/23
  */
-public class ingredientes {
+public class Plato {
 }
