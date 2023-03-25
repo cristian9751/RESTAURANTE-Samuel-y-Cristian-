@@ -17,6 +17,7 @@ class ingredienteTest {
 
     private ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private ingrediente prueba = new ingrediente();
+
     @BeforeEach
     void setUp() {
         prueba.setCantidad(10);
@@ -68,5 +69,6 @@ class ingredienteTest {
     void TestErrCantidad() {
         prueba.setCantidad(-1);
         assertEquals("La cantidad del ingrediente Patata no puede" +
-                " ser -1\n" ,outContent.toString());
+                " ser -1\n", outContent.toString());
     }
+}
