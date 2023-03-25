@@ -10,6 +10,9 @@ public class ingrediente {
     private String tipo;//Tipo de ingrediente
     private int cantidad;//Cantidad del ingrediente que tiene el restaurante en stock
 
+    public ingrediente() {
+    }
+
     /***
      * Constructor con tres parametros
      * @param nombre Nombre que va a tener el ingrediente
@@ -70,29 +73,29 @@ public class ingrediente {
         if(comprobar_cantidad(cantidad, false)) {
             this.cantidad = cantidad;
         } else {
-            System.out.println("La canttidad del ingrediente " + this.nombre
+            System.err.println("La cantidad del ingrediente " + this.nombre
             + " no puede ser " + cantidad);
         }
     }
 
     /***
      * Metodo que aumenta la cantidad de un ingrediente
-     * @param cantidad Entero que indica el numero en el que queremos aumentar la cantidad
+     * @param Cantidad Entero que indica el numero en el que queremos aumentar la cantidad
      */
-    public void AumentarCantidad(int cantidad) {
+    public void AumentarCantidad(int Cantidad) {
         if(comprobar_cantidad(cantidad, true)) {
-            this.setCantidad(this.cantidad + cantidad);
+            this.setCantidad(this.cantidad + Cantidad);
         }
     }
 
 
     /***
      * Metodo que reduce la cantidad de un ingrediente
-     * @param cantidad Entero que indica el numero en el que queremos reducir la cantidad
+     * @param Cantidad Entero que indica el numero en el que queremos reducir la cantidad
      */
-    public void ReducirCantidad(int cantidad) {
-        if(comprobar_cantidad(cantidad, true)) {
-            this.setCantidad(this.cantidad - cantidad);
+    public void ReducirCantidad(int Cantidad) {
+        if(comprobar_cantidad(Cantidad, true)) {
+            this.setCantidad(this.cantidad - Cantidad);
         }
     }
 
@@ -103,13 +106,28 @@ public class ingrediente {
      * @return Devuelve true o false en funcion de si la cantidad es mayor que 0 o no
      */
     private boolean comprobar_cantidad(int cant, boolean txt) {
-        if(cant > 0) {
+        if(cant >= 0) {
             return true;
         } else {
             if(txt) {
-                System.out.println("Debes indicar un valor mayor o igual a 0");
+                System.err.println("Debes indicar un valor mayor o igual a 0");
             }
             return false;
         }
     }
+
+    /***
+     * Metodo tostring que controla como se muestra la informacion de un objeto de tipo ingrediente
+     * @return Devuelve la informacion de un ingrediente
+     */
+
+    @Override
+    public String toString() {
+        return "Ingrediente: " + this.nombre + ": \n"
+                + "Nombre: " + this.nombre + "\n"
+                + "Tipo: " + this.tipo + "\n"
+                + "Cantidad en stock: " + this.cantidad;
+    }
+
+
 }
