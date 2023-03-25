@@ -60,7 +60,7 @@ public class ingrediente {
 
     private boolean comprobar_cantidad(int cant, boolean txt) {
         if(cant > 0) {
-            return true
+            return true;
         } else {
             if(txt) {
                 System.out.println("Debes indicar un valor mayor o igual a 0");
