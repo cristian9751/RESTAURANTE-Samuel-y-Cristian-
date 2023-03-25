@@ -65,10 +65,38 @@ class ingredienteTest {
         assertEquals(resultado, prueba.toString());
     }
 
+    /***
+     * Metodo que testea si al modificarse la cantidad de un ingrediente
+     * por un valor menor a 0 se muestre el mensaje de error correspondiente
+     */
     @Test
     void TestErrCantidad() {
         prueba.setCantidad(-1);
         assertEquals("La cantidad del ingrediente Patata no puede" +
                 " ser -1\n", outContent.toString());
+    }
+
+    /***
+     * Metodo que testea si al introducirse un valor menor a 0 como argumento para
+     * aumentar cantidad se muestra el mensaje de error correspondiente del metodo
+     * comprobar_cantidad
+     */
+    @Test
+    void TestErrAumentarCantidad() {
+        prueba.AumentarCantidad(-1);
+        assertEquals("Debes indicar un valor mayor o igual a 0\n"
+                , outContent.toString());
+    }
+
+    /***
+     * Metodo que testea si al introducirse un valor menor a 0 copmo argumento para
+     * reducir cantidad se el mensaje de error correspondiente del metodo
+     * comprobar_cantidad
+     */
+    @Test
+    void TestErrReducirCantidad() {
+        prueba.ReducirCantidad(-1);
+        assertEquals("Debes indicar un valor mayor o igual a 0\n"
+        , outContent.toString());
     }
 }

@@ -83,7 +83,7 @@ public class ingrediente {
      * @param Cantidad Entero que indica el numero en el que queremos aumentar la cantidad
      */
     public void AumentarCantidad(int Cantidad) {
-        if(comprobar_cantidad(cantidad, true)) {
+        if(comprobar_cantidad(Cantidad, true)) {
             this.setCantidad(this.cantidad + Cantidad);
         }
     }
