@@ -10,50 +10,48 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author cristian
- * @project RESTAURANTE-Samuel-y-Cristian- - com.restaurante
- * @created 25/3/23
  */
-class ingredienteTest {
+class IngredienteTest {
 
-    private ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-    private ingrediente prueba = new ingrediente();
+    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    private final Ingrediente PRUEBA = new Ingrediente();
 
     @BeforeEach
     void setUp() {
-        prueba.setCantidad(10);
-        prueba.setNombre("Patata");
-        prueba.setTipo("Tuberculo");
+        PRUEBA.setCantidad(10);
+        PRUEBA.setNombre("Patata");
+        PRUEBA.setTipo("Tuberculo");
         System.setErr(new PrintStream(outContent));
     }
 
     @Test
     void getNombre() {
-        prueba.setNombre("Patata");
-        assertEquals("Patata", prueba.getNombre());
+        PRUEBA.setNombre("Patata");
+        assertEquals("Patata", PRUEBA.getNombre());
     }
 
     @Test
     void getTipo() {
-        prueba.setTipo("Tuberculo");
-        assertEquals("Tuberculo", prueba.getTipo());
+        PRUEBA.setTipo("Tuberculo");
+        assertEquals("Tuberculo", PRUEBA.getTipo());
     }
 
     @Test
     void getCantidad() {
-        prueba.setCantidad(10);
-        assertEquals(10, prueba.getCantidad());
+        PRUEBA.setCantidad(10);
+        assertEquals(10, PRUEBA.getCantidad());
     }
 
     @Test
     void aumentarCantidad() {
-        prueba.AumentarCantidad(1);
-        assertEquals(11, prueba.getCantidad());
+        PRUEBA.AumentarCantidad(1);
+        assertEquals(11, PRUEBA.getCantidad());
     }
 
     @Test
     void reducirCantidad() {
-        prueba.ReducirCantidad(1);
-        assertEquals(9, prueba.getCantidad());
+        PRUEBA.ReducirCantidad(1);
+        assertEquals(9, PRUEBA.getCantidad());
     }
 
     @Test
@@ -62,7 +60,7 @@ class ingredienteTest {
                 + "Nombre: Patata\n"
                 + "Tipo: Tuberculo\n"
                 + "Cantidad en stock: 10";
-        assertEquals(resultado, prueba.toString());
+        assertEquals(resultado, PRUEBA.toString());
     }
 
     /***
@@ -71,7 +69,7 @@ class ingredienteTest {
      */
     @Test
     void TestErrCantidad() {
-        prueba.setCantidad(-1);
+        PRUEBA.setCantidad(-1);
         assertEquals("La cantidad del ingrediente Patata no puede" +
                 " ser -1\n", outContent.toString());
     }
@@ -83,7 +81,7 @@ class ingredienteTest {
      */
     @Test
     void TestErrAumentarCantidad() {
-        prueba.AumentarCantidad(-1);
+        PRUEBA.AumentarCantidad(-1);
         assertEquals("Debes indicar un valor mayor o igual a 0\n"
                 , outContent.toString());
     }
@@ -95,7 +93,7 @@ class ingredienteTest {
      */
     @Test
     void TestErrReducirCantidad() {
-        prueba.ReducirCantidad(-1);
+        PRUEBA.ReducirCantidad(-1);
         assertEquals("Debes indicar un valor mayor o igual a 0\n"
         , outContent.toString());
     }

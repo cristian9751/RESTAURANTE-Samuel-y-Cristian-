@@ -2,15 +2,16 @@ package com.restaurante;
 
 /**
  * @author cristian
- * @project RESTAURANTE-Samuel-y-Cristian- - com.restaurante
- * @created 25/3/23
  */
-public class ingrediente {
+public class Ingrediente {
     private String nombre;//Nombre del ingrediente
     private String tipo;//Tipo de ingrediente
     private int cantidad;//Cantidad del ingrediente que tiene el restaurante en stock
 
-    public ingrediente() {
+    /***
+     * Constructor vacio
+     */
+    public Ingrediente() {
     }
 
     /***
@@ -19,7 +20,7 @@ public class ingrediente {
      * @param tipo String tipo que va  a tenr el ingrediente
      * @param cantidad Entero que va a indicar la cantidad del ingrediente
      */
-    public ingrediente(String nombre, String tipo, int cantidad) {
+    public Ingrediente(String nombre, String tipo, int cantidad) {
         this.nombre = nombre;
         this.tipo = tipo;
         this.cantidad = cantidad;
