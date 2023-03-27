@@ -34,3 +34,4 @@ hs_err_pid*
 #Se ignora directorio doc
 /Doc/
 /.github/
+                            pom.xml
