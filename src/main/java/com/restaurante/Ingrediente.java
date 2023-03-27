@@ -132,6 +132,10 @@ public class Ingrediente {
                 res = ingrediente;
             }
         }
+        if(res == null) {
+            System.out.println("No hay ningun ingrediente" +
+                    "con el nombre " + nombre);
+        }
         return res;
     }
 
@@ -141,11 +145,15 @@ public class Ingrediente {
      * @return Devuelve true si el nombre ya existe y false si el nombre todavia no existe
      */
     private static boolean NameExists(String nombre) {
-        if(buscar(nombre) == null) {
-            System.out.println(nombre + " ya esta en uso. Busca otro nombre para el ingrediente");
+        if(Ingredientes_Restaurante.isEmpty()) {
             return false;
         } else {
-            return true;
+            if(buscar(nombre) == null ) {
+                return false;
+            } else {
+                System.out.println(nombre + " ya esta en uso, o es invalido");
+                return true;
+            }
         }
     }
 
@@ -155,12 +163,12 @@ public class Ingrediente {
      * @return Nombre que ha introducido el usuario
      */
     private static String Pedir_Nombre() {
-        boolean invalid_name = true;
-        String nombre = new String();
-        while(invalid_name) {
+        boolean invalid_name;
+        String nombre;
+        do {
             nombre = utilidades.PedirString("Introduce el nombre del ingrediente");
             invalid_name = NameExists(nombre);
-        }
+        } while(invalid_name);
 
         return nombre;
     }
