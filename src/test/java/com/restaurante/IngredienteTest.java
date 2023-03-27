@@ -4,7 +4,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.io.PrintStream;
+import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -16,8 +18,11 @@ class IngredienteTest {
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final Ingrediente PRUEBA = new Ingrediente();
 
+
+
     @BeforeEach
     void setUp() {
+        Ingrediente.Ingredientes_Restaurante.add(PRUEBA);
         PRUEBA.setCantidad(10);
         PRUEBA.setNombre("Patata");
         PRUEBA.setTipo("Tuberculo");
@@ -82,7 +87,7 @@ class IngredienteTest {
     @Test
     void TestErrAumentarCantidad() {
         PRUEBA.AumentarCantidad(-1);
-        assertEquals("Debes indicar un valor mayor o igual a 0\n"
+        assertEquals("Debes indicar una cantidad mayor o igual a 0\n"
                 , outContent.toString());
     }
 
@@ -94,7 +99,12 @@ class IngredienteTest {
     @Test
     void TestErrReducirCantidad() {
         PRUEBA.ReducirCantidad(-1);
-        assertEquals("Debes indicar un valor mayor o igual a 0\n"
+        assertEquals("Debes indicar una cantidad mayor o igual a 0\n"
         , outContent.toString());
+    }
+
+    @Test
+    void TestBuscar() {
+        assertEquals(PRUEBA, Ingrediente.buscar("Patata"));
     }
 }
