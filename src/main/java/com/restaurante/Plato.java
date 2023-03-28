@@ -15,7 +15,7 @@ import com.restaurante.utilidades.*;
 
 public class Plato {
     private  HashMap<Ingrediente, Integer> Ingredientes_Plato; //Almacena ingredientes del plato y la cantidad
-    private static List<Plato> Platos_Restaurante = new ArrayList<Plato>();
+    private static List<Plato> Platos_Restaurante = new ArrayList<>();
     private String nombre;//Nombre del plato
 
     private static int min_ingredientes = 3;
@@ -39,19 +39,21 @@ public class Plato {
     }
 
     public void setNombre(String nombre) {
-        if(nombre.length() >= 7) {
-            this.nombre = nombre;
-        } else {
-            System.err.println("El nombre debe de ser mayor que 7");
-        }
+        this.nombre = nombre;
     }
 
     public int getPrecio() {
         return Precio;
     }
 
-    public void setPrecio(int precio) {
-        Precio = precio;
+    public boolean setPrecio(int precio) {
+        if(precio > 0) {
+            this.Precio = precio;
+            return true;
+        } else {
+            System.out.println("El precio debe de ser mayor que 0");
+            return false;
+        }
     }
 
     public void Agregar_Ingrediente(Ingrediente ingrediente, int cant) {
@@ -62,6 +64,8 @@ public class Plato {
                     Ingredientes_Plato.put(ingrediente, cant);
                     done = true;
                 }
+            } else {
+                System.out.println("El plato " + this.nombre + " ya tiene el ingrediente" + ingrediente.getNombre());
             }
         }
 
@@ -131,10 +135,24 @@ public class Plato {
         return nombre;
     }
 
+
+    public void modificar_cantidad(Ingrediente ingrediente , int cant) {
+        if(this.Ingredientes_Plato.containsKey(ingrediente)) {
+            Ingredientes_Plato.replace(ingrediente, cant);
+        } else {
+            System.out.println("El ingrediente " + ingrediente.getNombre() + " no esta en el plato");
+        }
+    }
+
+
     public static boolean Crear() {
         Plato nuevo = new Plato();
         nuevo.setNombre(PedirNombre());
-        nuevo.setPrecio(utilidades.PideEntero("Introduce el precio del plato"));
+        boolean p_valido;
+        do {
+            p_valido = nuevo.setPrecio(utilidades.PideEntero("Introduce el precio del plato"));
+        } while(!p_valido);
+
         for(int i = 0; i<= min_ingredientes; i++) {
             Ingrediente ingrediente = Ingrediente.buscar(utilidades.PedirString("Introduce el nombre del " +
                     "ingrdiente"));
@@ -156,6 +174,95 @@ public class Plato {
 
         Platos_Restaurante.add(nuevo);
         return exists(nuevo);
+    }
+
+    public static boolean Eliminar(Plato plato) {
+        if(Platos_Restaurante.contains(plato)) {
+            Platos_Restaurante.remove(plato);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    private static int mostrar_menu() {
+        System.out.println("MENU DE OPCIONES DE PLATOS");
+        System.out.println("1. Crear plato");
+        System.out.println("2. Eliminar plato");
+        System.out.println("3. Cambiar precio");
+        System.out.println("4. Añadir ingrediente");
+        System.out.println("5. Quitar ingrediente");
+        System.out.println("6. Modificar cantidades de los ingredientes");
+        System.out.println("7. Salir");
+        return utilidades.PideEntero("Selecciona una opcion del menu");
+    }
+
+    public static void menu() {
+        int opcion;
+        do {
+           opcion = mostrar_menu();
+           manejar_opcion(opcion);
+        } while(opcion != 6);
+    }
+
+    private static void manejar_opcion(int opcion) {
+        Plato plato = null;
+        if(opcion != 1) {
+            plato = buscar(utilidades.PedirString("Introduce el nombre del plato."));
+            if(plato == null) {
+                System.out.println("El plato que buscas no existe");
+            } else {
+                swtich_opcion(opcion, plato);
+            }
+        } else {
+            swtich_opcion(opcion, plato);
+        }
+    }
+
+    private static void swtich_opcion(int opcion, Plato plato) {
+        switch (opcion) {
+            case 1:
+                if(Crear()) {
+                    System.out.println("Se ha creado el plato correctamente");
+                } else {
+                    System.out.println("Se ha producido un error al crear el plato");
+                }
+                break;
+            case 2:
+                if(Eliminar(plato)) {
+                    System.out.println("Se ha eliminado el plato " + plato.getNombre() + " correctamente");
+                }
+                break;
+            case 3:
+                plato.setPrecio(utilidades.PideEntero("Introduce el nuevo precio del plato"));
+                break;
+            case 4:
+                Ingrediente ingrediente = Ingrediente.buscar(utilidades.PedirString("Introduce el nombre del " +
+                        "ingrediente que quieres añadir al plato"));
+                plato.Agregar_Ingrediente(ingrediente, utilidades.PideEntero("Introduce la cantidad de " +
+                        ingrediente.getNombre() + " en el plato"));
+                break;
+            case 5:
+                ingrediente = Ingrediente.buscar(utilidades.PedirString("Introduce el nombre " +
+                        "del ingrediente que quieres quitar del plato"));
+                plato.Quitar_Ingrediente(ingrediente);
+                break;
+            case 6:
+                ingrediente = Ingrediente.buscar(utilidades.PedirString("Introduce el nombre del ingrediente" +
+                        "del cual quiers modificar la cantidad"));
+                plato.modificar_cantidad(ingrediente , utilidades.PideEntero("Introduce la cantidad"));
+                break;
+            case 7:
+                System.out.println("Seleccionaste salir del menu");
+                break;
+
+            default:
+                System.out.println("Debes seleccionar una opcion del 1 al 7");
+                break;
+
+
+        }
     }
 
 
