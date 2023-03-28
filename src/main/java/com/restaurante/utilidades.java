@@ -16,6 +16,4 @@ public class utilidades {
         tcl.nextLine();
         return res;
     }
-
-
 }
