@@ -132,10 +132,6 @@ public class Ingrediente {
                 res = ingrediente;
             }
         }
-        if(res == null) {
-            System.out.println("No hay ningun ingrediente" +
-                    "con el nombre " + nombre);
-        }
         return res;
     }
 
@@ -144,14 +140,14 @@ public class Ingrediente {
      * @param nombre Nombre que se esta buscando
      * @return Devuelve true si el nombre ya existe y false si el nombre todavia no existe
      */
-    private static boolean NameExists(String nombre) {
+    public static boolean NameExists(String nombre) {
         if(Ingredientes_Restaurante.isEmpty()) {
             return false;
         } else {
             if(buscar(nombre) == null ) {
                 return false;
             } else {
-                System.out.println(nombre + " ya esta en uso, o es invalido");
+                System.err.println(nombre + " ya esta en uso, o es invalido");
                 return true;
             }
         }
@@ -199,11 +195,12 @@ public class Ingrediente {
 
     @Override
     public String toString() {
-        return "Ingrediente: " + this.nombre + ": \n"
+        String lineas = "----------\n";
+        return lineas + "Ingrediente: " + this.nombre + ": \n"
                 + "Nombre: " + this.nombre + "\n"
                 + "Tipo: " + this.tipo + "\n"
-                + "Cantidad en stock: " + this.cantidad;
+                + "Cantidad en stock: " + this.cantidad
+                + lineas;
     }
-
 
 }
