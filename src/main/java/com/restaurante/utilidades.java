@@ -12,7 +12,9 @@ public class utilidades {
 
     public static int PideEntero(String txt) {
         System.out.println(txt);
-        return tcl.nextInt();
+        int res = tcl.nextInt();
+        tcl.nextLine();
+        return res;
     }
 
 

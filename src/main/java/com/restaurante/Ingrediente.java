@@ -138,14 +138,15 @@ public class Ingrediente {
         return res;
     }
 
-
+    /***
+     * Metodo que comprueba si un ingrdiente existe en el arraylist
+     * @param ingrediente Ingrediente que se busca
+     * @return Valor true si  existo o false si no existe
+     */
     public static boolean exists(Ingrediente ingrediente) {
         boolean res = false;
-        for(Ingrediente it : Ingredientes_Restaurante) {
-            if(it == ingrediente) {
-                res = true;
-                break;
-            }
+        if(Ingredientes_Restaurante.contains(ingrediente)) {
+            res = true;
         }
         if(!res) {
             System.out.println(" El ingrediente " + ingrediente.getNombre() + " no existe");
@@ -165,7 +166,7 @@ public class Ingrediente {
             if(buscar(nombre) == null ) {
                 return false;
             } else {
-                System.err.println(nombre + " ya esta en uso, o es invalido");
+                System.err.println("El nombre de ingrediente " + nombre + " ya esta en uso, o es invalido");
                 return true;
             }
         }
@@ -194,16 +195,17 @@ public class Ingrediente {
      * @return Devuelve un booleano true si se ha podido crear, false si no
      */
     public static boolean Crear() {
+        Ingrediente nuevo = null;
         String Nombre_Ingrediente = Pedir_Nombre();
         String Tipo_Ingrediente = utilidades.PedirString("Introduce el tipo de producto");
         int Cant_Ingrediente = utilidades.PideEntero("Introduce la cantidad de " +
                 Nombre_Ingrediente + " que hay");
         if(comprobar_cantidad(Cant_Ingrediente, true)) {
-            Ingredientes_Restaurante.add(new Ingrediente(Nombre_Ingrediente, Tipo_Ingrediente, Cant_Ingrediente));
-            return true;
-        } else {
-            return false;
+            nuevo = new Ingrediente(Nombre_Ingrediente, Tipo_Ingrediente, Cant_Ingrediente);
+            Ingredientes_Restaurante.add(nuevo);
         }
+
+        return exists(nuevo);
     }
 
     private static boolean IngredientesEmpty() {
@@ -222,7 +224,7 @@ public class Ingrediente {
 
     @Override
     public String toString() {
-        String lineas = "----------\n";
+        String lineas = "\n----------\n";
         return lineas + "Ingrediente: " + this.nombre + ": \n"
                 + "Nombre: " + this.nombre + "\n"
                 + "Tipo: " + this.tipo + "\n"

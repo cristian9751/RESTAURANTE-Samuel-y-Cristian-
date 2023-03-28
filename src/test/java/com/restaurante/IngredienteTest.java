@@ -61,10 +61,10 @@ class IngredienteTest {
 
     @Test
     void testToString() {
-        String resultado = "----------\nIngrediente: Patata: \n"
+        String resultado = "\n----------\nIngrediente: Patata: \n"
                 + "Nombre: Patata\n"
                 + "Tipo: Tuberculo\n"
-                + "Cantidad en stock: 10----------\n";
+                + "Cantidad en stock: 10\n----------\n";
         assertEquals(resultado, PRUEBA.toString());
     }
 
@@ -105,13 +105,18 @@ class IngredienteTest {
 
     @Test
     void TestBuscar() {
-        assertEquals(PRUEBA, Ingrediente.buscar("Patata"));
+        assertEquals(Ingrediente.Ingredientes_Restaurante.get(0), Ingrediente.buscar("Patata"));
     }
 
     @Test
     void TestNameExists() {
         assertEquals(true, Ingrediente.NameExists("Patata"));
-        assertEquals("Patata ya esta en uso, o es invalido\n",
+        assertEquals("El nombre de ingrediente Patata ya esta en uso, o es invalido\n",
                 outContent.toString());
+    }
+
+    @Test
+    void TestExists() {
+        assertEquals(true, Ingrediente.exists(PRUEBA));
     }
 }

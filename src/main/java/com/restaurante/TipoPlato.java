@@ -26,7 +26,7 @@ public class TipoPlato {
         }
     }
 
-    private static int mostrar_menu(String txt) {
+    private static int mostrar_menu() {
         System.out.println("MENU TIPOS DE PLATO");
         for(EnumPlato tipo: EnumPlato.values()) {
             System.out.println(tipo.getNum() + " " +  tipo.getNombre());
@@ -40,7 +40,7 @@ public class TipoPlato {
         EnumPlato elegido = null;
         do {
             System.out.println(txt);
-            opcion = mostrar_menu(txt);
+            opcion = mostrar_menu();
             for(EnumPlato tipo: EnumPlato.values()) {
                 if(tipo.getNum() == opcion) {
                     elegido = tipo;
