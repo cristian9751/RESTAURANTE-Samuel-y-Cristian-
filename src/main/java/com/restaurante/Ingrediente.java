@@ -109,7 +109,7 @@ public class Ingrediente {
      * @param txt Valor booleano que  indica si debe mostrarse un texto al devolver false
      * @return Devuelve true o false en funcion de si la cantidad es mayor que 0 o no
      */
-    private static boolean comprobar_cantidad(int cant, boolean txt) {
+    public static boolean comprobar_cantidad(int cant, boolean txt) {
         if(cant >= 0) {
             return true;
         } else {
@@ -127,10 +127,28 @@ public class Ingrediente {
      */
     public static Ingrediente buscar(String nombre) {
         Ingrediente res = null;
-        for(Ingrediente ingrediente : Ingredientes_Restaurante) {
-            if(ingrediente.getNombre().equalsIgnoreCase(nombre)) {
-                res = ingrediente;
+        if(!IngredientesEmpty()) {
+            for(Ingrediente ingrediente : Ingredientes_Restaurante) {
+                if(ingrediente.getNombre().equalsIgnoreCase(nombre)) {
+                    res = ingrediente;
+                    break;
+                }
             }
+        }
+        return res;
+    }
+
+
+    public static boolean exists(Ingrediente ingrediente) {
+        boolean res = false;
+        for(Ingrediente it : Ingredientes_Restaurante) {
+            if(it == ingrediente) {
+                res = true;
+                break;
+            }
+        }
+        if(!res) {
+            System.out.println(" El ingrediente " + ingrediente.getNombre() + " no existe");
         }
         return res;
     }
@@ -182,6 +200,15 @@ public class Ingrediente {
                 Nombre_Ingrediente + " que hay");
         if(comprobar_cantidad(Cant_Ingrediente, true)) {
             Ingredientes_Restaurante.add(new Ingrediente(Nombre_Ingrediente, Tipo_Ingrediente, Cant_Ingrediente));
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private static boolean IngredientesEmpty() {
+        if(Ingredientes_Restaurante.isEmpty()) {
+            System.out.println("No hay ingredientes en stock actualmente");
             return true;
         } else {
             return false;
