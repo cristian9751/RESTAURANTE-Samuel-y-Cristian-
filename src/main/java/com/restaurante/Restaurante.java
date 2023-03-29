@@ -16,7 +16,6 @@ public class Restaurante {
         do {
             opcion_principal = Menu_Opciones.menu_principal();
             manejar(opcion_principal);
-            System.out.println(Plato.getMin_ingredientes());
         } while(opcion_principal != 5);
     }
 
@@ -28,6 +27,10 @@ public class Restaurante {
             case 2:
                 Plato.manejar_opcion(Menu_Opciones.menu_plato());
                 break;
+            default:
+                System.out.println("Debes de selccionar una de las opciones del menu");
+                break;
+
 
 
         }
