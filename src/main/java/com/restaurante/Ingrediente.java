@@ -162,6 +162,10 @@ public class Ingrediente {
         }
     }
 
+    /***
+     * Metodo que maneja la opcion  del menu de ingredientes
+     * @param opcion Se le pasa la opcion escogida del menu
+     */
     public static void manejar_opcion(int opcion) {
         switch (opcion) {
             case 1:
@@ -182,7 +186,7 @@ public class Ingrediente {
                 }
                 break;
             case 3:
-                System.out.println("Volver al menu principal");
+                System.out.println("Volviste al menu principal");
                 break;
             default:
                 System.out.println("Debes escoger una opcion del 1 al 3");

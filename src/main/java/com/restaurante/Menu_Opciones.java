@@ -7,6 +7,7 @@ package com.restaurante;
  */
 public class Menu_Opciones {
     public static int menu_principal() {
+        System.out.println("MENU PRINCIPAL");
         System.out.println("1. Gestionar ingredientes");
         System.out.println("2. Gestionar platos");
         System.out.println("3. Gestionar menus");
@@ -16,6 +17,7 @@ public class Menu_Opciones {
     }
 
     public static int menu_ingrediente() {
+        System.out.println("MENU DE OPCIONES DE LOS INGREDIENTES");
         System.out.println("1. Crear nuevo ingrediente");
         System.out.println("2. Eliminar un ingrediente");
         System.out.println("3. Volver al menu principal");
