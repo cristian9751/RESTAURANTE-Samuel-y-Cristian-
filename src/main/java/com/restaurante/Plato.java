@@ -64,7 +64,7 @@ public class Plato {
         }
     }
 
-    public void Agregar_Ingrediente(Ingrediente ingrediente, int cant) {
+    public boolean Agregar_Ingrediente(Ingrediente ingrediente, int cant) {
         boolean done = false;
         if(Ingrediente.exists(ingrediente)) {
             if(!Ingredientes_Plato.containsKey(ingrediente)) {
@@ -83,6 +83,7 @@ public class Plato {
             System.out.println("Se ha añadido el ingrediente " + ingrediente.getNombre() +
                     " en el plato " + this.getNombre());
         }
+        return done;
     }
 
     public void Quitar_Ingrediente(Ingrediente ingrediente) {
@@ -158,7 +159,7 @@ public class Plato {
     }
 
 
-    public static boolean Crear() {
+    public static void Crear() {
         if(Ingrediente.Ingredientes_Restaurante.size() >= min_ingredientes) {
             Plato nuevo = new Plato();
             nuevo.setNombre(PedirNombre());
@@ -167,13 +168,9 @@ public class Plato {
                 p_valido = nuevo.setPrecio(utilidades.PideEntero("Introduce el precio del plato"));
             } while(!p_valido);
 
-            for(int i = 0; i<= min_ingredientes; i++) {
+            for(int i = 1; i<= min_ingredientes; i++) {
                 Ingrediente ingrediente = Ingrediente.buscar(utilidades.PedirString("Introduce el nombre del " +
-                        "ingrdiente"));
-                if(!Ingrediente.exists(ingrediente)) {
-                    i--;
-                    continue;
-                }
+                        "ingrdiente" + i));
                 int cantidad = utilidades.PideEntero("Introde la cantidad de "  + ingrediente.getNombre()
                         + " que se va a utilizar en el plato " + nuevo.getNombre());
 
@@ -181,11 +178,11 @@ public class Plato {
             }
 
             Platos_Restaurante.add(nuevo);
-            return exists(nuevo);
         } else {
             System.out.println("No hay ingredientes suficientes para crear un plato");
-            return false;
         }
+
+        System.out.println("Se ha creado el plato correctamente");
 
     }
 
@@ -201,13 +198,13 @@ public class Plato {
     public static void manejar_opcion(int opcion) {
         boolean sw = false;
         Plato plato = null;
-        if(opcion != 1) {
+        if(opcion == 1 || opcion == 7) {
+            sw = true;
+        } else {
             plato = buscar(utilidades.PedirString("Introduce el nombre del plato."));
             if(exists(plato)) {
                 sw = true;
             }
-        } else {
-            sw = true;
         }
         if(sw) {
             swtich_opcion(opcion, plato);
@@ -217,11 +214,7 @@ public class Plato {
     private static void swtich_opcion(int opcion, Plato plato) {
         switch (opcion) {
             case 1:
-                if(Crear()) {
-                    System.out.println("Se ha creado el plato correctamente");
-                } else {
-                    System.out.println("No se ha podido crear el plato");
-                }
+                Crear();
                 break;
             case 2:
                 if(Eliminar(plato)) {
@@ -255,11 +248,19 @@ public class Plato {
                 min_ingredientes = utilidades.PideEntero("Introduce el minmo de ingredientes " +
                         "que quieres que tengan los nuevos platos");
                 break;
+            case 8:
+                mostrar();
             default:
                 System.out.println("Debes seleccionar una opcion del 1 al 6");
                 break;
 
 
+        }
+    }
+
+    public static void mostrar() {
+        for(Plato plato : Platos_Restaurante) {
+            System.out.println(plato);
         }
     }
     @Override

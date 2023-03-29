@@ -32,6 +32,7 @@ public class Menu_Opciones {
         System.out.println("5. Quitar ingrediente");
         System.out.println("6. Modificar cantidades de los ingredientes");
         System.out.println("7. Cambiar el minimo de ingredientes que deben tener los platos");
+        System.out.println("8. Mostrar platos");
         return escoger_opcion("Escoge una de las siete opciones");
     }
 

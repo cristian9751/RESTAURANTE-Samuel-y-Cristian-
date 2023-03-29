@@ -16,6 +16,7 @@ public class Restaurante {
         do {
             opcion_principal = Menu_Opciones.menu_principal();
             manejar(opcion_principal);
+            System.out.println(Plato.getMin_ingredientes());
         } while(opcion_principal != 5);
     }
 
