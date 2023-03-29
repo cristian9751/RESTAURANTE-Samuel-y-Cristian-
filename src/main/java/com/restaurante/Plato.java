@@ -60,10 +60,8 @@ public class Plato {
         boolean done = false;
         if(Ingrediente.exists(ingrediente)) {
             if(!Ingredientes_Plato.containsKey(ingrediente)) {
-                if(Ingrediente.comprobar_cantidad(cant, true)) {
-                    Ingredientes_Plato.put(ingrediente, cant);
-                    done = true;
-                }
+                Ingredientes_Plato.put(ingrediente, cant);
+                done = true;
             } else {
                 System.out.println("El plato " + this.nombre + " ya tiene el ingrediente" + ingrediente.getNombre());
             }
@@ -164,11 +162,6 @@ public class Plato {
             int cantidad = utilidades.PideEntero("Introde la cantidad de "  + ingrediente.getNombre()
             + " que se va a utilizar en el plato " + nuevo.getNombre());
 
-            if(!Ingrediente.comprobar_cantidad(cantidad, true)) {
-                i--;
-                continue;
-            }
-
             nuevo.Agregar_Ingrediente(ingrediente, cantidad);
         }
 
@@ -198,13 +191,7 @@ public class Plato {
         return utilidades.PideEntero("Selecciona una opcion del menu");
     }
 
-    public static void menu() {
-        int opcion;
-        do {
-           opcion = mostrar_menu();
-           manejar_opcion(opcion);
-        } while(opcion != 6);
-    }
+
 
     private static void manejar_opcion(int opcion) {
         Plato plato = null;
