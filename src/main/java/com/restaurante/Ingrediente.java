@@ -180,7 +180,7 @@ public class Ingrediente {
                     Eliminar(ingrediente);
                     System.out.println("Se ha eliminado el ingrediente correctamente");
                 }
-                break,
+                break;
             case 3:
                 System.out.println("Volver al menu principal");
                 break;
