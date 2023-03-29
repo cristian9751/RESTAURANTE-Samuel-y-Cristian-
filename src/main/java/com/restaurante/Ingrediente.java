@@ -6,10 +6,9 @@ import java.util.ArrayList;
  * @author cristian
  */
 public class Ingrediente {
-    public static  ArrayList<Ingrediente> Ingredientes_Restaurante = new ArrayList<Ingrediente>();
+    public static ArrayList<Ingrediente> Ingredientes_Restaurante = new ArrayList<Ingrediente>();
     private String nombre;//Nombre del ingrediente
     private String tipo;//Tipo de ingrediente
-    private int cantidad;//Cantidad del ingrediente que tiene el restaurante en stock
 
     /***
      * Constructor vacio
@@ -21,12 +20,10 @@ public class Ingrediente {
      * Constructor con tres parametros
      * @param nombre Nombre que va a tener el ingrediente
      * @param tipo String tipo que va  a tenr el ingrediente
-     * @param cantidad Entero que va a indicar la cantidad del ingrediente
      */
-    private Ingrediente(String nombre, String tipo, int cantidad) {
+    private Ingrediente(String nombre, String tipo) {
         this.nombre = nombre;
         this.tipo = tipo;
-        this.cantidad = cantidad;
     }
 
     /***
@@ -61,65 +58,6 @@ public class Ingrediente {
         this.tipo = tipo;
     }
 
-    /**
-     * Metodo get
-     * @return Obtiene la cantidad del ingrediente
-     */
-    public int getCantidad() {
-        return cantidad;
-    }
-
-    /**
-     * Metodo set que actualiza la cantidad del ingrediente.
-     * @param cantidad Entero que pasara a ser el parametro cantidad del ingrediente
-     */
-    public void setCantidad(int cantidad) {
-        if(comprobar_cantidad(cantidad, false)) {
-            this.cantidad = cantidad;
-        } else {
-            System.err.println("La cantidad del ingrediente " + this.nombre
-                    + " no puede ser " + cantidad);
-        }
-    }
-
-    /***
-     * Metodo que aumenta la cantidad de un ingrediente
-     * @param Cantidad Entero que indica el numero en el que queremos aumentar la cantidad
-     */
-    public void AumentarCantidad(int Cantidad) {
-        if(comprobar_cantidad(Cantidad, true)) {
-            this.setCantidad(this.cantidad + Cantidad);
-        }
-    }
-
-
-    /***
-     * Metodo que reduce la cantidad de un ingrediente
-     * @param Cantidad Entero que indica el numero en el que queremos reducir la cantidad
-     */
-    public void ReducirCantidad(int Cantidad) {
-        if(comprobar_cantidad(Cantidad, true)) {
-            this.setCantidad(this.cantidad - Cantidad);
-        }
-    }
-
-    /***
-     * Metodo que comprueba si la cantidad es mayor que 0
-     * @param cant Entero que indica cual es el numero en el que queremos aumentar la cantidad
-     * @param txt Valor booleano que  indica si debe mostrarse un texto al devolver false
-     * @return Devuelve true o false en funcion de si la cantidad es mayor que 0 o no
-     */
-    private static boolean comprobar_cantidad(int cant, boolean txt) {
-        if(cant >= 0) {
-            return true;
-        } else {
-            if(txt) {
-                System.err.println("Debes indicar una cantidad mayor o igual a 0");
-            }
-            return false;
-        }
-    }
-
     /***
      * Metodo que busca un ingrediente segun el nombre
      * @param nombre String  con el nombre que se va a buscar
@@ -127,10 +65,29 @@ public class Ingrediente {
      */
     public static Ingrediente buscar(String nombre) {
         Ingrediente res = null;
-        for(Ingrediente ingrediente : Ingredientes_Restaurante) {
-            if(ingrediente.getNombre().equalsIgnoreCase(nombre)) {
-                res = ingrediente;
+        if (!IngredientesEmpty()) {
+            for (Ingrediente ingrediente : Ingredientes_Restaurante) {
+                if (ingrediente.getNombre().equalsIgnoreCase(nombre)) {
+                    res = ingrediente;
+                    break;
+                }
             }
+        }
+        return res;
+    }
+
+    /***
+     * Metodo que comprueba si un ingrdiente existe en el arraylist
+     * @param ingrediente Ingrediente que se busca
+     * @return Valor true si  existo o false si no existe
+     */
+    public static boolean exists(Ingrediente ingrediente) {
+        boolean res = false;
+        if (Ingredientes_Restaurante.contains(ingrediente)) {
+            res = true;
+        }
+        if (!res) {
+            System.out.println(" El ingrediente " + ingrediente.getNombre() + " no existe");
         }
         return res;
     }
@@ -141,13 +98,13 @@ public class Ingrediente {
      * @return Devuelve true si el nombre ya existe y false si el nombre todavia no existe
      */
     public static boolean NameExists(String nombre) {
-        if(Ingredientes_Restaurante.isEmpty()) {
+        if (Ingredientes_Restaurante.isEmpty()) {
             return false;
         } else {
-            if(buscar(nombre) == null ) {
+            if (buscar(nombre) == null) {
                 return false;
             } else {
-                System.err.println(nombre + " ya esta en uso, o es invalido");
+                System.err.println("El nombre de ingrediente " + nombre + " ya esta en uso, o es invalido");
                 return true;
             }
         }
@@ -164,7 +121,7 @@ public class Ingrediente {
         do {
             nombre = utilidades.PedirString("Introduce el nombre del ingrediente");
             invalid_name = NameExists(nombre);
-        } while(invalid_name);
+        } while (invalid_name);
 
         return nombre;
     }
@@ -173,18 +130,67 @@ public class Ingrediente {
      * Metodo que pide los datos de nuevo ingrediente al usuario y
      * llama al constructor para almacenar el nuevo ingrediente
      * en el arrayList
+     *
      * @return Devuelve un booleano true si se ha podido crear, false si no
      */
     public static boolean Crear() {
+        Ingrediente nuevo = new Ingrediente();
         String Nombre_Ingrediente = Pedir_Nombre();
         String Tipo_Ingrediente = utilidades.PedirString("Introduce el tipo de producto");
-        int Cant_Ingrediente = utilidades.PideEntero("Introduce la cantidad de " +
-                Nombre_Ingrediente + " que hay");
-        if(comprobar_cantidad(Cant_Ingrediente, true)) {
-            Ingredientes_Restaurante.add(new Ingrediente(Nombre_Ingrediente, Tipo_Ingrediente, Cant_Ingrediente));
+        nuevo.setNombre(Nombre_Ingrediente);
+        nuevo.setTipo(Tipo_Ingrediente);
+        Ingredientes_Restaurante.add(nuevo);
+
+        return exists(nuevo);
+    }
+
+    public static boolean Eliminar(Ingrediente ingrediente) {
+        if (exists(ingrediente)) {
+            Ingredientes_Restaurante.remove(ingrediente);
             return true;
         } else {
             return false;
+        }
+    }
+
+    private static boolean IngredientesEmpty() {
+        if (Ingredientes_Restaurante.isEmpty()) {
+            System.out.println("No hay ingredientes en stock actualmente");
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /***
+     * Metodo que maneja la opcion  del menu de ingredientes
+     * @param opcion Se le pasa la opcion escogida del menu
+     */
+    public static void manejar_opcion(int opcion) {
+        switch (opcion) {
+            case 1:
+                if (Crear()) {
+                    System.out.println("Se ha creado el ingrediente correctamente");
+                } else {
+                    System.out.println("No se ha podido crear el ingrediente");
+                }
+                break;
+
+            case 2:
+                Ingrediente ingrediente = buscar(utilidades.PedirString("Introduce el nombre del ingrediente"));
+                if (ingrediente == null) {
+                    System.out.println("El ingrediente no existe");
+                } else {
+                    Eliminar(ingrediente);
+                    System.out.println("Se ha eliminado el ingrediente correctamente");
+                }
+                break;
+            case 3:
+                System.out.println("Volviste al menu principal");
+                break;
+            default:
+                System.out.println("Debes escoger una opcion del 1 al 3");
+                break;
         }
     }
 
@@ -195,12 +201,11 @@ public class Ingrediente {
 
     @Override
     public String toString() {
-        String lineas = "----------\n";
+        String lineas = "\n----------\n";
         return lineas + "Ingrediente: " + this.nombre + ": \n"
                 + "Nombre: " + this.nombre + "\n"
                 + "Tipo: " + this.tipo + "\n"
-                + "Cantidad en stock: " + this.cantidad
                 + lineas;
     }
-
 }
+

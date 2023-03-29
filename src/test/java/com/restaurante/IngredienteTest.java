@@ -23,7 +23,6 @@ class IngredienteTest {
     @BeforeEach
     void setUp() {
         Ingrediente.Ingredientes_Restaurante.add(PRUEBA);
-        PRUEBA.setCantidad(10);
         PRUEBA.setNombre("Patata");
         PRUEBA.setTipo("Tuberculo");
         System.setErr(new PrintStream(outContent));
@@ -41,77 +40,26 @@ class IngredienteTest {
         assertEquals("Tuberculo", PRUEBA.getTipo());
     }
 
-    @Test
-    void getCantidad() {
-        PRUEBA.setCantidad(10);
-        assertEquals(10, PRUEBA.getCantidad());
-    }
-
-    @Test
-    void aumentarCantidad() {
-        PRUEBA.AumentarCantidad(1);
-        assertEquals(11, PRUEBA.getCantidad());
-    }
-
-    @Test
-    void reducirCantidad() {
-        PRUEBA.ReducirCantidad(1);
-        assertEquals(9, PRUEBA.getCantidad());
-    }
 
     @Test
     void testToString() {
-        String resultado = "----------\nIngrediente: Patata: \n"
+        String resultado = "\n----------\nIngrediente: Patata: \n"
                 + "Nombre: Patata\n"
                 + "Tipo: Tuberculo\n"
-                + "Cantidad en stock: 10----------\n";
+                +   "\n----------\n" ;
         assertEquals(resultado, PRUEBA.toString());
     }
 
-    /***
-     * Metodo que testea si al modificarse la cantidad de un ingrediente
-     * por un valor menor a 0 se muestre el mensaje de error correspondiente
-     */
-    @Test
-    void TestErrCantidad() {
-        PRUEBA.setCantidad(-1);
-        assertEquals("La cantidad del ingrediente Patata no puede" +
-                " ser -1\n", outContent.toString());
-    }
-
-    /***
-     * Metodo que testea si al introducirse un valor menor a 0 como argumento para
-     * aumentar cantidad se muestra el mensaje de error correspondiente del metodo
-     * comprobar_cantidad
-     */
-    @Test
-    void TestErrAumentarCantidad() {
-        PRUEBA.AumentarCantidad(-1);
-        assertEquals("Debes indicar una cantidad mayor o igual a 0\n"
-                , outContent.toString());
-    }
-
-    /***
-     * Metodo que testea si al introducirse un valor menor a 0 copmo argumento para
-     * reducir cantidad se el mensaje de error correspondiente del metodo
-     * comprobar_cantidad
-     */
-    @Test
-    void TestErrReducirCantidad() {
-        PRUEBA.ReducirCantidad(-1);
-        assertEquals("Debes indicar una cantidad mayor o igual a 0\n"
-        , outContent.toString());
-    }
 
     @Test
     void TestBuscar() {
-        assertEquals(PRUEBA, Ingrediente.buscar("Patata"));
+        assertEquals(PRUEBA.toString(), Ingrediente.buscar("Patata").toString());
     }
 
     @Test
     void TestNameExists() {
         assertEquals(true, Ingrediente.NameExists("Patata"));
-        assertEquals("Patata ya esta en uso, o es invalido\n",
+        assertEquals("El nombre de ingrediente Patata ya esta en uso, o es invalido\n",
                 outContent.toString());
     }
 }
