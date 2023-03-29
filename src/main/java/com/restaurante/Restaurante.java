@@ -24,6 +24,10 @@ public class Restaurante {
             case 1:
                 Ingrediente.manejar_opcion(Menu_Opciones.menu_ingrediente());
                 break;
+            case 2:
+                Plato.manejar_opcion(Menu_Opciones.menu_plato());
+                break;
+
 
         }
     }

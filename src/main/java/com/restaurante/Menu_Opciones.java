@@ -20,8 +20,19 @@ public class Menu_Opciones {
         System.out.println("MENU DE OPCIONES DE LOS INGREDIENTES");
         System.out.println("1. Crear nuevo ingrediente");
         System.out.println("2. Eliminar un ingrediente");
-        System.out.println("3. Volver al menu principal");
         return escoger_opcion("Escoge una de las tres opciones");
+    }
+
+    public static int menu_plato() {
+        System.out.println("MENU DE OPCIONES DE PLATOS");
+        System.out.println("1. Crear plato");
+        System.out.println("2. Eliminar plato");
+        System.out.println("3. Cambiar precio");
+        System.out.println("4. Añadir ingrediente");
+        System.out.println("5. Quitar ingrediente");
+        System.out.println("6. Modificar cantidades de los ingredientes");
+        System.out.println("7. Cambiar el minimo de ingredientes que deben tener los platos");
+        return escoger_opcion("Escoge una de las siete opciones");
     }
 
     private static int escoger_opcion(String txt) {

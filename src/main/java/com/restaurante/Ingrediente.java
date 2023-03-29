@@ -162,6 +162,7 @@ public class Ingrediente {
         }
     }
 
+
     /***
      * Metodo que maneja la opcion  del menu de ingredientes
      * @param opcion Se le pasa la opcion escogida del menu
@@ -185,11 +186,8 @@ public class Ingrediente {
                     System.out.println("Se ha eliminado el ingrediente correctamente");
                 }
                 break;
-            case 3:
-                System.out.println("Volviste al menu principal");
-                break;
             default:
-                System.out.println("Debes escoger una opcion del 1 al 3");
+                System.out.println("Debes escoger una de las dos opciones");
                 break;
         }
     }
