@@ -1,4 +1,4 @@
-package com.restaurante;
+ackage com.restaurante;
 
 /**
  * @author cristian

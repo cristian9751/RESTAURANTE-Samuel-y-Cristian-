@@ -1,3 +1,7 @@
+
+@TitoSam007
+@cristian9751
+381 lines (316 sloc) 9.99 KB
 package com.restaurante;
 
 import java.util.ArrayList;
@@ -9,7 +13,7 @@ import java.util.List;
  * @created 25/3/23
  */
 public class Empleado {
-
+    
 
     // PARAMETROS
 
@@ -27,7 +31,7 @@ public class Empleado {
     public enum tipo_puesto {
 
         Cocinero(1, "Cocinero"),
-        Ayudante(2, "Ayudadante"),
+        Ayudante(2,"Ayudadante"),
         Office(3, "Office"),
         Cheff(4, "Cheff"),
         Camarero(5, "Camarero");
@@ -35,26 +39,23 @@ public class Empleado {
         private String nombretipo;
         private int n;
 
-        tipo_puesto(int num, String nombre) {
-            this.nombretipo = nombre;
-            this.n = num;
-        }
+    tipo_puesto(int num, String nombre){
+        this.nombretipo = nombre;
+        this.n = num;
+    }
 
-        public String getNombretipo() {
-            return nombretipo;
-        }
-
-        public void setNombretipo(String nombretipo) {
-            this.nombretipo = nombretipo;
-        }
-
-        public int getN() {
-            return n;
-        }
-
-        public void setN(int n) {
-            this.n = n;
-        }
+    public String getNombretipo() {
+        return nombretipo;
+    }
+    public void setNombretipo(String nombretipo) {
+        this.nombretipo = nombretipo;
+    }
+    public int getN() {
+        return n;
+    }
+    public void setN(int n) {
+        this.n = n;
+    }
     }
 
     /*
@@ -75,7 +76,7 @@ public class Empleado {
      * @param saldo int que almacena el salario del emopleado
      *
      * @param modificacion int que modifica el saldo de un empleado
-     *
+     * 
      * @param opcion int que almacena la opcion del menu de empleado
      */
     public Empleado(int Edad, String Nombre, String Apellidos, tipo_puesto puesto, int saldo, int modificacion) {
@@ -216,10 +217,10 @@ public class Empleado {
         } while (opcion != 6);
     }
 
-    @Override
-    public String toString() {
-        return "Nombre: " + this.Nombre + "\n" +
-                "Apellidos: " + this.Apellidos + "\n" +
+    @Override 
+    public String toString(){
+        return "Nombre: " + this.Nombre +  "\n" + 
+                "Apellidos: " + this.Apellidos + "\n" + 
                 "Edad: " + this.edad + "\n" +
                 "Salario: " + this.saldo + "\n" +
                 "Puesto: " + this.puesto;
@@ -250,7 +251,7 @@ public class Empleado {
     public static int Puesto_empleado_actualizado() {
 
         System.out.println("Puestos de trabajadores: ");
-        for (tipo_puesto tipo : Empleado.tipo_puesto.values()) {
+        for (tipo_puesto tipo: Empleado.tipo_puesto.values()) {
             System.out.println(tipo.getN() + " " + tipo.getNombretipo());
         }
 
@@ -266,7 +267,7 @@ public class Empleado {
             System.out.println(txt);
             opcion = Puesto_empleado_actualizado();
             for (tipo_puesto tipo : Empleado.tipo_puesto.values()) {
-                if (tipo.getN() == opcion) {
+                if(tipo.getN() == opcion){
                     elegido = tipo;
                 }
             }
@@ -315,7 +316,7 @@ public class Empleado {
                 System.out.println("Vaya, algo ha ido mal, intentalo de nuevo");
             }
         } while (Modificacion_sueldo(disminucion) != true);
-
+        
         saldo -= disminucion;
 
         System.out.print("Datos actualizados: " + "\t" +
@@ -341,24 +342,24 @@ public class Empleado {
         if (opcion == 1) {
             nombres = utilidades.PedirString("Introduzca el nombre del empleado que esta buscando: ");
 
-            for (Empleado empleado : Empleados) {
+        for (Empleado empleado : Empleados) {
 
-                if (empleado.getNombre().equalsIgnoreCase(nombres)) {
-                    System.out.println(empleado);
-                }
+            if (empleado.getNombre().equalsIgnoreCase(nombres)) {
+                System.out.println(empleado);
             }
+        }
         } else {
             nombres = utilidades.PedirString("Introduzca el nombre del empleado que esta buscando: ");
 
-            for (Empleado empleado : Empleados) {
+        for (Empleado empleado : Empleados) {
 
-                if (empleado.getNombre().equalsIgnoreCase(nombres)) {
-                    Despedir_empleado();
-                }
+            if (empleado.getNombre().equalsIgnoreCase(nombres)) {
+                Despedir_empleado();
             }
-
         }
-
+        
+        }
+        
     }
 
     /*
@@ -380,4 +381,5 @@ public class Empleado {
             return false;
         }
     }
+
 }
