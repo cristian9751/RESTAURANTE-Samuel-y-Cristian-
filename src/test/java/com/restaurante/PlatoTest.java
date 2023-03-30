@@ -55,8 +55,7 @@ class PlatoTest {
 
     @Test
     void agregar_Ingrediente() {
-        assertEquals(true,
-                PRUEBA.getIngredientes_Plato().containsKey(ingrediente));
+        assertTrue(PRUEBA.getIngredientes_Plato().containsKey(ingrediente));
         Ingrediente otro = new Ingrediente();
         PRUEBA.Agregar_Ingrediente(otro, 10);
         assertEquals("El ingrediente especificado no existe\n"
@@ -72,7 +71,7 @@ class PlatoTest {
 
     @Test
     void quitar_Ingrediente() {
-        assertEquals(true, PRUEBA.Quitar_Ingrediente(ingrediente));
+        assertTrue(PRUEBA.Quitar_Ingrediente(ingrediente));
         Ingrediente otro = new Ingrediente("Otro", "Otro");
         PRUEBA.Quitar_Ingrediente(otro);
         assertEquals("El ingrediente Otro no esta en el plato" +
@@ -81,9 +80,9 @@ class PlatoTest {
 
     @Test void exists() {
         Plato.Platos_Restaurante.add(PRUEBA);
-        assertEquals(true, Plato.exists(PRUEBA));
+        assertTrue(Plato.exists(PRUEBA));
         Plato.Platos_Restaurante.remove(PRUEBA);
-        assertEquals(false, Plato.exists(PRUEBA));
+        assertFalse(Plato.exists(PRUEBA));
     }
 
     @Test void mostrar_ingredientes() {
@@ -98,28 +97,28 @@ class PlatoTest {
     @Test
     void isEmptyFalse() {
         Plato.Platos_Restaurante.add(PRUEBA);
-        assertEquals(false, Plato.isEmpty());
+        assertFalse(Plato.isEmpty());
         Plato.Platos_Restaurante.remove(PRUEBA);
     }
 
     @Test
     void IsEmptyTrue() {
         Plato.Platos_Restaurante.clear();
-        assertEquals(true, Plato.isEmpty());
+        assertTrue(Plato.isEmpty());
     }
 
     @Test
     void buscar() {
         Plato.Platos_Restaurante.add(PRUEBA);
-        assertEquals(null, Plato.buscar("Pepe"));
+        assertNull(Plato.buscar("Pepe"));
         assertEquals(PRUEBA, Plato.buscar(PRUEBA.getNombre()));
         Plato.Platos_Restaurante.remove(PRUEBA);
     }
 
     @Test void nameExists() {
         Plato.Platos_Restaurante.add(PRUEBA);
-        assertEquals(false, Plato.NameExists("Pepe"));
-        assertEquals(true, Plato.NameExists(PRUEBA.getNombre()));
+        assertFalse(Plato.NameExists("Pepe"));
+        assertTrue(Plato.NameExists(PRUEBA.getNombre()));
         Plato.Platos_Restaurante.remove(PRUEBA);
     }
 
@@ -145,9 +144,9 @@ class PlatoTest {
     }
     @Test void eliminar() {
           //Si se intenta eliminar un plato que no esta en el arraylist
-          assertEquals(false, Plato.Eliminar(PRUEBA));
+        assertFalse(Plato.Eliminar(PRUEBA));
           Plato.Platos_Restaurante.add(PRUEBA);
-          assertEquals(true, Plato.Eliminar(PRUEBA));
+        assertTrue(Plato.Eliminar(PRUEBA));
           Plato.Platos_Restaurante.remove(PRUEBA);
     }
 
@@ -158,8 +157,5 @@ class PlatoTest {
         Plato.Platos_Restaurante.add(PRUEBA);
         assertEquals(PRUEBA.toString(), Plato.Platos_Restaurante.get(0).toString());
     }
-//
-//    @Test void testToString() {
-//    }
 
 }

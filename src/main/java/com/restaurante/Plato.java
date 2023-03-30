@@ -1,18 +1,17 @@
 package com.restaurante;
 
-/**
- * @author cristian
- * @project RESTAURANTE-Samuel-y-Cristian- - com.restaurante
- * @created 25/3/23
- */
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import com.restaurante.TipoPlato.EnumPlato;
 
+/**
+ * @author  Cristian Popica
+ */
 public class Plato {
-    private  HashMap<Ingrediente, Integer> Ingredientes_Plato = new HashMap<>(); //Almacena ingredientes del plato y la cantidad
+    private final HashMap<Ingrediente, Integer> Ingredientes_Plato = new HashMap<>(); //Almacena ingredientes del plato y la cantidad
     public  static List<Plato> Platos_Restaurante = new ArrayList<>();
     private String nombre;//Nombre del plato
 
@@ -178,11 +177,7 @@ public class Plato {
      * @return Valor true si existe o false si no existe el plato
      */
     public  static boolean exists(Plato plato) {
-        if(Platos_Restaurante.contains(plato)) {
-            return true;
-        } else {
-            return false;
-        }
+        return Platos_Restaurante.contains(plato);
     }
 
     /***
@@ -258,7 +253,7 @@ public class Plato {
      */
     private static String PedirNombre() {
         String nombre;
-        boolean invalid = true;
+        boolean invalid;
         do {
             nombre = utilidades.PedirString("Introduce el nombre del plato");
             invalid = NameExists(nombre); //Devuelve verdadero si el nombre esta en uso
