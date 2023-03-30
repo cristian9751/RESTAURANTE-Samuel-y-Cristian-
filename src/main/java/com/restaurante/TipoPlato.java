@@ -26,21 +26,13 @@ public class TipoPlato {
         }
     }
 
-    private static int mostrar_menu() {
-        System.out.println("MENU TIPOS DE PLATO");
-        for(EnumPlato tipo: EnumPlato.values()) {
-            System.out.println(tipo.getNum() + " " +  tipo.getNombre());
-        }
-        return utilidades.PideEntero("Escoge el tipo de plato: ");
-    }
-
     public static EnumPlato elegir() {
         int opcion;
         String txt = new String();
         EnumPlato elegido = null;
         do {
             System.out.println(txt);
-            opcion = mostrar_menu();
+            opcion = Menu_Opciones.menu_tipo_plato();
             for(EnumPlato tipo: EnumPlato.values()) {
                 if(tipo.getNum() == opcion) {
                     elegido = tipo;
