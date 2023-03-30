@@ -2,8 +2,6 @@ package com.restaurante;
 
 /**
  * @author cristian
- * @project RESTAURANTE-Samuel-y-Cristian- - com.restaurante
- * @created 25/3/23
  */
 public class Menu_Opciones {
     public static int menu_principal() {
@@ -20,7 +18,8 @@ public class Menu_Opciones {
         System.out.println("MENU DE OPCIONES DE LOS INGREDIENTES");
         System.out.println("1. Crear nuevo ingrediente");
         System.out.println("2. Eliminar un ingrediente");
-        System.out.println("3. Volver al menu principal");
+        System.out.println("3. Ver todos los ingredientes del restaurante");
+        System.out.println("4. Volver al menu principal");
         return escoger_opcion("Escoge una de las tres opciones");
     }
 
@@ -35,7 +34,7 @@ public class Menu_Opciones {
         System.out.println("7. Cambiar el minimo de ingredientes que deben tener los platos");
         System.out.println("8. Mostrar platos");
         System.out.println("9. Volver al menu principal");
-        return escoger_opcion("Escoge una de las siete opciones");
+        return escoger_opcion("Escoge una de las nueve opciones");
     }
 
     public static int menu_tipo_plato() {

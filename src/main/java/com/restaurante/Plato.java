@@ -344,6 +344,7 @@ public class Plato {
                     i--;
                     continue;
                 }
+                System.out.println("Selecciona el tipo de plato");
                 EnumPlato tipo = TipoPlato.elegir();
                 nuevo.setTipo(tipo);
 
