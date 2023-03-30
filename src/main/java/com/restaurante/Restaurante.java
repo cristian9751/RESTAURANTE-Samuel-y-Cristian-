@@ -31,6 +31,12 @@ public class Restaurante {
             case 2:
                 Manejar_plato(menu_plato());
                 break;
+            case 3:
+                Opcion_escogida(Menu_Empleados());
+                break;
+            case 4:
+                Menu_escogido(Menu_menus());
+                break;
             default:
                 System.out.println("Debes de selccionar una de las opciones del menu");
                 break;
@@ -38,6 +44,14 @@ public class Restaurante {
 
         }
     }
+
+    private static void Menu_escogido(int menu_menus) {
+    }
+
+
+    private static void Opcion_escogida(int menu_Empleados) {
+    }
+
 
     public static void manejar_ingrediente(int opcion) {
         switch (opcion) {

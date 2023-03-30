@@ -190,8 +190,6 @@ public class Empleado {
 
 
         do {
-
-
             switch (opcion) {
                 case 1:
                     Puesto_empleado_actualizado();
@@ -326,10 +324,11 @@ public class Empleado {
     /*
      * Metodo Buscar_Empleado que busca un empleado
      */
-    public static void Buscar_Empleado() {
+    public static Empleado Buscar_Empleado() {
 
         int opcion;
         String nombres;
+        Empleado empleado = null;
 
         System.out.println("1.Ver el empleado: ");
         System.out.println("2.Eliminar datos del empleado: ");
@@ -338,23 +337,27 @@ public class Empleado {
         if (opcion == 1) {
             nombres = utilidades.PedirString("Introduzca el nombre del empleado que esta buscando: ");
 
-        for (Empleado empleado : Empleados) {
+        for (Empleado empleados : Empleados) {
 
-            if (empleado.getNombre().equalsIgnoreCase(nombres)) {
+            if (empleados.getNombre().equalsIgnoreCase(nombres)) {
                 System.out.println(empleado);
+                return empleado;
             }
         }
         } else {
             nombres = utilidades.PedirString("Introduzca el nombre del empleado que esta buscando: ");
 
-        for (Empleado empleado : Empleados) {
+        for (Empleado empleados : Empleados) {
 
-            if (empleado.getNombre().equalsIgnoreCase(nombres)) {
+            if (empleados.getNombre().equalsIgnoreCase(nombres)) {
                 Despedir_empleado();
+                return empleado;
             }
         }
+
         
         }
+        return empleado;
         
     }
 
