@@ -21,7 +21,7 @@ public class Ingrediente {
      * @param nombre Nombre que va a tener el ingrediente
      * @param tipo String tipo que va  a tenr el ingrediente
      */
-    private Ingrediente(String nombre, String tipo) {
+    public Ingrediente(String nombre, String tipo) {
         this.nombre = nombre;
         this.tipo = tipo;
     }
@@ -86,8 +86,8 @@ public class Ingrediente {
         if (Ingredientes_Restaurante.contains(ingrediente)) {
             res = true;
         }
-        if (!res) {
-            System.out.println(" El ingrediente " + ingrediente.getNombre() + " no existe");
+        if(ingrediente == null) {
+            res = false;
         }
         return res;
     }
@@ -140,6 +140,7 @@ public class Ingrediente {
         nuevo.setNombre(Nombre_Ingrediente);
         nuevo.setTipo(Tipo_Ingrediente);
         Ingredientes_Restaurante.add(nuevo);
+        System.out.println(nuevo);
 
         return exists(nuevo);
     }
@@ -162,37 +163,8 @@ public class Ingrediente {
         }
     }
 
-    /***
-     * Metodo que maneja la opcion  del menu de ingredientes
-     * @param opcion Se le pasa la opcion escogida del menu
-     */
-    public static void manejar_opcion(int opcion) {
-        switch (opcion) {
-            case 1:
-                if (Crear()) {
-                    System.out.println("Se ha creado el ingrediente correctamente");
-                } else {
-                    System.out.println("No se ha podido crear el ingrediente");
-                }
-                break;
 
-            case 2:
-                Ingrediente ingrediente = buscar(utilidades.PedirString("Introduce el nombre del ingrediente"));
-                if (ingrediente == null) {
-                    System.out.println("El ingrediente no existe");
-                } else {
-                    Eliminar(ingrediente);
-                    System.out.println("Se ha eliminado el ingrediente correctamente");
-                }
-                break;
-            case 3:
-                System.out.println("Volviste al menu principal");
-                break;
-            default:
-                System.out.println("Debes escoger una opcion del 1 al 3");
-                break;
-        }
-    }
+
 
     /***
      * Metodo tostring que controla como se muestra la informacion de un objeto de tipo ingrediente
@@ -207,5 +179,12 @@ public class Ingrediente {
                 + "Tipo: " + this.tipo + "\n"
                 + lineas;
     }
-}
 
+    public static void mostrar() {
+        if(!IngredientesEmpty()) {
+            for(Ingrediente ingrediente : Ingredientes_Restaurante) {
+                System.out.println(ingrediente);
+            }
+        }
+    }
+}
