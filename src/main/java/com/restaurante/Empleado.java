@@ -27,7 +27,7 @@ public class Empleado {
     public enum tipo_puesto {
 
         Cocinero(1, "Cocinero"),
-        Ayudante(2,"Ayudadante"),
+        Ayudante(2, "Ayudadante"),
         Office(3, "Office"),
         Cheff(4, "Cheff"),
         Camarero(5, "Camarero");
@@ -35,7 +35,7 @@ public class Empleado {
         private String nombretipo;
         private int n;
 
-        tipo_puesto(int num, String nombre){
+        tipo_puesto(int num, String nombre) {
             this.nombretipo = nombre;
             this.n = num;
         }
@@ -43,12 +43,15 @@ public class Empleado {
         public String getNombretipo() {
             return nombretipo;
         }
+
         public void setNombretipo(String nombretipo) {
             this.nombretipo = nombretipo;
         }
+
         public int getN() {
             return n;
         }
+
         public void setN(int n) {
             this.n = n;
         }
@@ -214,8 +217,8 @@ public class Empleado {
     }
 
     @Override
-    public String toString(){
-        return "Nombre: " + this.Nombre +  "\n" +
+    public String toString() {
+        return "Nombre: " + this.Nombre + "\n" +
                 "Apellidos: " + this.Apellidos + "\n" +
                 "Edad: " + this.edad + "\n" +
                 "Salario: " + this.saldo + "\n" +
@@ -247,7 +250,7 @@ public class Empleado {
     public static int Puesto_empleado_actualizado() {
 
         System.out.println("Puestos de trabajadores: ");
-        for (tipo_puesto tipo: Empleado.tipo_puesto.values()) {
+        for (tipo_puesto tipo : Empleado.tipo_puesto.values()) {
             System.out.println(tipo.getN() + " " + tipo.getNombretipo());
         }
 
@@ -263,7 +266,7 @@ public class Empleado {
             System.out.println(txt);
             opcion = Puesto_empleado_actualizado();
             for (tipo_puesto tipo : Empleado.tipo_puesto.values()) {
-                if(tipo.getN() == opcion){
+                if (tipo.getN() == opcion) {
                     elegido = tipo;
                 }
             }
@@ -377,5 +380,4 @@ public class Empleado {
             return false;
         }
     }
-
 }
