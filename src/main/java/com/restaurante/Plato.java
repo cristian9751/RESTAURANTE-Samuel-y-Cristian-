@@ -342,13 +342,12 @@ public class Plato {
                 //Si no se ha podido agregar el ingrediente
                 if(!nuevo.Agregar_Ingrediente(ingrediente, cantidad)) {
                     i--;
-                    continue;
                 }
-                System.out.println("Selecciona el tipo de plato");
-                EnumPlato tipo = TipoPlato.elegir();
-                nuevo.setTipo(tipo);
 
             }
+            System.out.println("Selecciona el tipo de plato");
+            EnumPlato tipo = TipoPlato.elegir();
+            nuevo.setTipo(tipo);
 
             Platos_Restaurante.add(nuevo);
             //Si el numero de ingredientes del ArrayList de ingredients
