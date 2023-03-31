@@ -37,6 +37,27 @@ public class Menu_Opciones {
         return escoger_opcion("Escoge una de las nueve opciones");
     }
 
+    public static int Menu_Empleados() {
+        System.out.println("MENU DE LOS EMPLEADOS: " + "\n" +
+                            "1.Cambiar el puesto de un empleado" + "\n" +
+                            "2.Aumentar el sueldo" + "\n" +
+                            "3.Disminuir el sueldo" + "\n" +
+                            "4.Introducir los datos de un empleado" + "\n" +
+                            "5.Despedir a un empleado" + "\n" +
+                            "6.Salir");
+        return escoger_opcion("Escoge una de las seis opciones");
+    }
+
+    public static int Menu_menus() {
+        System.out.println("MENU DE LOS MENUS" + "\n" +
+                "1.Crear menu:" + "\n" +
+                "2.Modificar precio:" + "\n" +
+                "3.Modificar la cantidad de platos de un menu:" + "\n" +
+                "4.Eliminar un menu" + "\n" +
+                "5.Salir");
+        return escoger_opcion("Escoge una de las 4 opciones opciones");
+    } 
+
     public static int menu_tipo_plato() {
         System.out.println("MENU TIPOS DE PLATO");
         for(TipoPlato.EnumPlato tipo : TipoPlato.EnumPlato.values()) {
